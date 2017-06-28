@@ -37,11 +37,16 @@ public class RetrofitService {
         service = retrofit.create(RetrofitCall.class);
     }
 
-    public interface OnBooksReceivedListeer {
+    public interface OnStoresReceivedListener{
+        void onStoresReceived(List<Store> stores);
+    }
+
+
+    public interface OnBooksReceivedListener {
         void onBooksReceived(List<Book> books);
     }
 
-    public void getBooks(final OnBooksReceivedListeer listener) {
+    public void getBooks(final OnBooksReceivedListener listener) {
         Call<List<Book>> call = service.getBooks();
         call.enqueue(new Callback<List<Book>>() {
             @Override
@@ -55,6 +60,25 @@ public class RetrofitService {
 
             @Override
             public void onFailure(Call<List<Book>> call, Throwable t) {
+                Log.w(TAG, "OnFailure: Get books request failed");
+            }
+        });
+    }
+
+    public void getStores(final OnStoresReceivedListener listener) {
+        Call<List<Store>> call = service.getStores();
+        call.enqueue(new Callback<List<Store>>() {
+            @Override
+            public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
+                if (response.body() != null) {
+                    listener.onStoresReceived(response.body());
+                } else {
+                    Log.w(TAG, "onResponse: no body received");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Store>> call, Throwable t) {
                 Log.w(TAG, "OnFailure: Get books request failed");
             }
         });

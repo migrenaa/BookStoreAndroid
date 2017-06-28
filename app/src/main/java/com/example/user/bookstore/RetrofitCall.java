@@ -12,4 +12,7 @@ import retrofit2.http.GET;
 public interface RetrofitCall {
     @GET("Books")
     Call<List<Book>> getBooks();
+
+    @GET("Store")
+    Call<List<Store>> getStores();
 }

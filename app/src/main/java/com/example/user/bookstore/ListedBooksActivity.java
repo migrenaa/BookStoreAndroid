@@ -37,7 +37,7 @@ public class ListedBooksActivity extends Activity {
         mRecyclerView.setAdapter(mBookAdapter);
 
         RetrofitService services = new RetrofitService();
-        services.getBooks(new RetrofitService.OnBooksReceivedListeer() {
+        services.getBooks(new RetrofitService.OnBooksReceivedListener() {
             @Override
             public void onBooksReceived(List<Book> books) {
                 mBookAdapter.setBooks(books);
