@@ -44,7 +44,6 @@ public class ListedBooksActivity extends AppCompatActivity  {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.stores_option_menu, menu);
         return true;
