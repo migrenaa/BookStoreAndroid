@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:background="?android:attr/activatedBackgroundIndicator">
 
-    <ImageView
-        android:id="@+id/listed_books_book_photoURL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <ImageView android:id="@+id/listed_books_book_photoURL"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/listed_books_book_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@android:dimen/app_icon_size"
-        android:text="book name"/>
+        android:fontFamily="sans-serif-light"
+        android:layout_marginLeft="7dp"
+        android:layout_toRightOf="@+id/listed_books_book_photoURL"
+        android:textSize="20dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/listed_books_book_price"/>
+
 
     <TextView
-        android:id="@+id/listed_books_book_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@android:dimen/app_icon_size"
-        android:text="book author"/>
-
-    <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/listed_books_book_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@android:dimen/app_icon_size"
-        android:text="book price"/>
-</LinearLayout>
+        android:fontFamily="sans-serif-light"
+        android:layout_alignParentRight="true"
+        android:textSize="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

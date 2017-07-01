@@ -20,6 +20,6 @@ public interface RetrofitCall {
     @GET("Books/{id}")
     Call<Book> getSingleBook(@Path("id") int bookId);
 
-    @GET("Stores/{id}/books")
+    @GET("Store/{id}/books")
     Call<List<Book>> getBooksInStore(@Path("id") int storeId);
 }

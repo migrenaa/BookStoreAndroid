@@ -1,12 +1,9 @@
 package com.example.user.bookstore;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -24,7 +21,7 @@ public class DetailsBooksActivity extends AppCompatActivity {
     TextView mBookAuthor;
     TextView mBookDescription;
     ImageView mBookPicture;
-    TextView mBookRating;
+    RatingBar mBookRating;
     TextView mBookPrice;
 
 
@@ -36,7 +33,7 @@ public class DetailsBooksActivity extends AppCompatActivity {
         mBookName = (TextView) findViewById(R.id.details_book_name);
         mBookAuthor = (TextView) findViewById(R.id.details_book_author);
         mBookDescription = (TextView) findViewById(R.id.details_book_description);
-        mBookRating = (TextView) findViewById(R.id.details_book_rating);
+        mBookRating = (RatingBar) findViewById(R.id.details_book_rating);
         mBookPrice = (TextView) findViewById(R.id.details_book_price);
         mBookPicture = (ImageView) findViewById(R.id.details_book_photo);
 
@@ -49,29 +46,9 @@ public class DetailsBooksActivity extends AppCompatActivity {
                 mBookAuthor.setText(book.getAuthor());
                 mBookDescription.setText(book.getDescription());
                 mBookPrice.setText(Integer.toString(book.getPrice()));
-                mBookRating.setText(Integer.toString(book.getRating()));
+                mBookRating.setNumStars(book.getRating());
                 Picasso.with(DetailsBooksActivity.this).load(book.getPictureURL()).into(mBookPicture);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.options_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.stores:
-                startActivity(new Intent(this, ListedStoresActivity.class));
-                return true;
-            case R.id.books:
-                startActivity(new Intent(this, ListedBooksActivity.class));
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

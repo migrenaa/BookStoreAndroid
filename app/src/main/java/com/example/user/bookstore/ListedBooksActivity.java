@@ -1,6 +1,7 @@
 package com.example.user.bookstore;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class ListedBooksActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
     private BookAdapter mBookAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    public static final int RC_STORES = 1;
 
 
     @Override
@@ -53,10 +55,27 @@ public class ListedBooksActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.stores:
-                startActivity(new Intent(this, ListedStoresActivity.class));
+                startActivityForResult(new Intent(this, ListedStoresActivity.class), RC_STORES);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == this.RC_STORES){
+            if(resultCode == Activity.RESULT_OK){
+                int storeId = data.getIntExtra("store_id_extra", 0);
+                RetrofitService services = new RetrofitService();
+                services.getBooksInStore(storeId, new RetrofitService.OnBooksInStoreReceivedListener() {
+                    @Override
+                    public void onBooksInStoreReceived(List<Book> books) {
+                        mBookAdapter.setBooks(books);
+                    }
+                });
+            }
         }
     }
 }

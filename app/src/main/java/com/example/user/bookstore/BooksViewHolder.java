@@ -16,14 +16,14 @@ import com.squareup.picasso.Picasso;
 
     private Book mBook;
     private TextView mBookName;
-    private TextView mBookAuthor;
+    //private TextView mBookAuthor;
     private TextView mBookPrice;
     private ImageView mBookPicture;
 
     public BooksViewHolder(View itemView) {
         super(itemView);
         mBookName = itemView.findViewById(R.id.listed_books_book_name);
-        mBookAuthor = itemView.findViewById(R.id.listed_books_book_author);
+        //mBookAuthor = itemView.findViewById(R.id.listed_books_book_author);
         mBookPrice = itemView.findViewById(R.id.listed_books_book_price);
         mBookPicture = itemView.findViewById(R.id.listed_books_book_photoURL);
         itemView.setOnClickListener(this);
@@ -32,7 +32,7 @@ import com.squareup.picasso.Picasso;
     public void bindBookItem(Book book) {
         mBook = book;
         mBookName.setText(book.getName());
-        mBookAuthor.setText(book.getAuthor());
+        //mBookAuthor.setText(book.getAuthor());
         mBookPrice.setText(Integer.toString(book.getPrice()));
         Picasso.with(itemView.getContext()).load(book.getPictureURL()).into(mBookPicture);
     }

@@ -44,15 +44,15 @@ public class ListedStoresActivity extends AppCompatActivity {
                 mStoreAdaptor.setStores(stores);
             }
         });
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.books_option_menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
