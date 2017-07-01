@@ -2,15 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="wrap_content"
     android:layout_height="wrap_content">
+
     <ImageView
         android:id="@+id/listed_books_book_photoURL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/alert_dark_frame"/>
-<TextView
-    android:id="@+id/listed_books_book_name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="book name"/>
+        android:layout_height="wrap_content"/>
 
+    <TextView
+        android:id="@+id/listed_books_book_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@android:dimen/app_icon_size"
+        android:text="book name"/>
+
+    <TextView
+        android:id="@+id/listed_books_book_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@android:dimen/app_icon_size"
+        android:text="book author"/>
+
+    <TextView
+        android:id="@+id/listed_books_book_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@android:dimen/app_icon_size"
+        android:text="book price"/>
 </LinearLayout>

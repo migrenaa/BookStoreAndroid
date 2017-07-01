@@ -37,14 +37,32 @@ public class RetrofitService {
         service = retrofit.create(RetrofitCall.class);
     }
 
-    public interface OnStoresReceivedListener{
-        void onStoresReceived(List<Store> stores);
+    public interface OnSingleBookReceivedListener{
+        void onSingleBookReceived(Book book);
     }
 
+    public void getSingleBook(int id, final OnSingleBookReceivedListener listener){
+        Call<Book> call = service.getSingleBook(id);
+        call.enqueue(new Callback<Book>() {
+            @Override
+            public void onResponse(Call<Book> call, Response<Book> response) {
+                if(response.body() != null){
+                    listener.onSingleBookReceived(response.body());
+                } else {
+                    Log.v(TAG, "onResponse: no body received");
+                }
+            }
+            @Override
+            public void onFailure(Call<Book> call, Throwable t) {
+                Log.w(TAG, "OnFailure: Get single book request failed");
+            }
+        });
+    }
 
     public interface OnBooksReceivedListener {
         void onBooksReceived(List<Book> books);
     }
+
 
     public void getBooks(final OnBooksReceivedListener listener) {
         Call<List<Book>> call = service.getBooks();
@@ -57,7 +75,6 @@ public class RetrofitService {
                     Log.w(TAG, "onResponse: no body received");
                 }
             }
-
             @Override
             public void onFailure(Call<List<Book>> call, Throwable t) {
                 Log.w(TAG, "OnFailure: Get books request failed");
@@ -65,6 +82,11 @@ public class RetrofitService {
         });
     }
 
+
+
+    public interface OnStoresReceivedListener {
+        void onStoresReceived(List<Store> stores);
+    }
     public void getStores(final OnStoresReceivedListener listener) {
         Call<List<Store>> call = service.getStores();
         call.enqueue(new Callback<List<Store>>() {
@@ -79,6 +101,28 @@ public class RetrofitService {
 
             @Override
             public void onFailure(Call<List<Store>> call, Throwable t) {
+                Log.w(TAG, "OnFailure: Get books request failed");
+            }
+        });
+    }
+
+    public interface OnBooksInStoreReceivedListener{
+        void onBooksInStoreReceived(List<Book> books);
+    }
+
+    public void getBooksInStore(int storeId, final OnBooksInStoreReceivedListener listener){
+        Call<List<Book>> call = service.getBooksInStore(storeId);
+        call.enqueue(new Callback<List<Book>>() {
+            @Override
+            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
+                if (response.body() != null) {
+                    listener.onBooksInStoreReceived(response.body());
+                } else {
+                    Log.w(TAG, "onResponse: no body received");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Book>> call, Throwable t) {
                 Log.w(TAG, "OnFailure: Get books request failed");
             }
         });

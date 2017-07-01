@@ -1,28 +1,25 @@
 package com.example.user.bookstore;
 
-import android.app.Activity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.util.ArrayList;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import java.util.List;
-
 
 /**
  * Created by User on 18.6.2017 г..
  */
 
-public class ListedBooksActivity extends Activity {
+public class ListedBooksActivity extends AppCompatActivity  {
 
     private RecyclerView mRecyclerView;
     private BookAdapter mBookAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private ArrayList<Book> books = new ArrayList<Book>();
 
 
     @Override
@@ -44,59 +41,23 @@ public class ListedBooksActivity extends Activity {
             }
         });
     }
-}
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-class BooksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-    private Book mBook;
-    private TextView mBookName;
-
-    public BooksViewHolder(View itemView){
-        super(itemView);
-        mBookName = itemView.findViewById(R.id.listed_books_book_name);
-    }
-
-    public void bindBookItem(Book book){
-        mBook = book;
-        mBookName.setText(book.getName());
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.stores_option_menu, menu);
+        return true;
     }
 
     @Override
-    public void onClick(View view) {
-        //TODO implement to send you to BookActivity
-    }
-}
-class BookAdapter extends RecyclerView.Adapter<BooksViewHolder>{
-
-    List<Book> books;
-
-    public BookAdapter() {this.books = new ArrayList<>();}
-    public BookAdapter(List<Book> books) {
-        this.books = books;
-    }
-
-    @Override
-    public BooksViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_book, parent, false);
-
-        return new BooksViewHolder(view);
-
-    }
-
-    @Override
-    public void onBindViewHolder(BooksViewHolder holder, int position) {
-        holder.bindBookItem(books.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return books.size();
-    }
-
-    public void setBooks(List<Book> books){
-        this.books = books;
-        notifyDataSetChanged();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.stores:
+                startActivity(new Intent(this, ListedStoresActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
