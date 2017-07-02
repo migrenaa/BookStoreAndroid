@@ -17,5 +17,6 @@ public class Store {
     {
         return name;
     }
+
     public int getId() {return id;}
 }

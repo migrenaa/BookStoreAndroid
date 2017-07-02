@@ -29,7 +29,7 @@ public class ListedStoresActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.listed_books_activity);
+        setContentView(R.layout.recycler_view_layout);
         mRecyclerView = (RecyclerView) findViewById(R.id.listed_books_layout);
 
         mLayoutManager = new LinearLayoutManager(this);

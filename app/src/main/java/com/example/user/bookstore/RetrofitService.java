@@ -48,8 +48,6 @@ public class RetrofitService {
             public void onResponse(Call<Book> call, Response<Book> response) {
                 if(response.body() != null){
                     listener.onSingleBookReceived(response.body());
-                } else {
-                    Log.v(TAG, "onResponse: no body received");
                 }
             }
             @Override
@@ -63,7 +61,6 @@ public class RetrofitService {
         void onBooksReceived(List<Book> books);
     }
 
-
     public void getBooks(final OnBooksReceivedListener listener) {
         Call<List<Book>> call = service.getBooks();
         call.enqueue(new Callback<List<Book>>() {
@@ -71,8 +68,6 @@ public class RetrofitService {
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 if (response.body() != null) {
                     listener.onBooksReceived(response.body());
-                } else {
-                    Log.w(TAG, "onResponse: no body received");
                 }
             }
             @Override
@@ -81,7 +76,6 @@ public class RetrofitService {
             }
         });
     }
-
 
 
     public interface OnStoresReceivedListener {
@@ -94,8 +88,6 @@ public class RetrofitService {
             public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
                 if (response.body() != null) {
                     listener.onStoresReceived(response.body());
-                } else {
-                    Log.w(TAG, "onResponse: no body received");
                 }
             }
 
@@ -117,8 +109,6 @@ public class RetrofitService {
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 if (response.body() != null) {
                     listener.onBooksInStoreReceived(response.body());
-                } else {
-                    Log.w(TAG, "onResponse: no body received");
                 }
             }
             @Override

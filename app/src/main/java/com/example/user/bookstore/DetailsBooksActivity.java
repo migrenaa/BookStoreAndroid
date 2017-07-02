@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-
-
 /**
  * Created by User on 29.6.2017 г..
  */
@@ -36,6 +34,7 @@ public class DetailsBooksActivity extends AppCompatActivity {
         mBookRating = (RatingBar) findViewById(R.id.details_book_rating);
         mBookPrice = (TextView) findViewById(R.id.details_book_price);
         mBookPicture = (ImageView) findViewById(R.id.details_book_photo);
+        mBookRating.setNumStars(5);
 
         id = getIntent().getIntExtra("book_id_extra", 0);
 
@@ -45,8 +44,8 @@ public class DetailsBooksActivity extends AppCompatActivity {
                 mBookName.setText(book.getName());
                 mBookAuthor.setText(book.getAuthor());
                 mBookDescription.setText(book.getDescription());
-                mBookPrice.setText(Integer.toString(book.getPrice()));
-                mBookRating.setNumStars(book.getRating());
+                mBookPrice.setText(Integer.toString(book.getPrice()) + ",00лв.");
+                mBookRating.setRating(book.getRating());
                 Picasso.with(DetailsBooksActivity.this).load(book.getPictureURL()).into(mBookPicture);
             }
         });
